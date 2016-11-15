@@ -11,7 +11,7 @@ package main.java;
  *
  * Since this class performs a sort of a Japanese translation, it is named after Kurosawa's classic 1980 film.
  *
- * Created by gtorr3 on 1/30/15.
+ * Created by Gregor Torrence on 11/14/16.
  */
 public class Kagemusha {
 
