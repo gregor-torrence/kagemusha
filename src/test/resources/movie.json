@@ -1,0 +1,7 @@
+{
+  "movie": {
+    "title": ["Jurassic Park"],
+    "desc": ["Lots of dinos!"],
+    "stars": ["${ stars } out of 5"]
+  }
+}

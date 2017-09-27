@@ -1,0 +1,9 @@
+package com.gregortorrence.kagemusha.model.xliff;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+@Data
+@Accessors(chain = true)
+public class XliffHeader {
+}

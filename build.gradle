@@ -1,0 +1,40 @@
+group 'kagemusha'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven {
+        url 'http://repo1.maven.org/maven2/'
+    }
+}
+
+dependencies {
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr3'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.0.pr3'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.10.3'
+
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.1'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4-rc-3'
+}
+
+// Task to create an executable fat jar that contains all of the library dependencies.
+jar {
+    outputs.upToDateWhen { false }
+    manifest {
+        attributes 'Main-Class': 'com.gregortorrence.kagemusha.Main'
+    }
+
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    archiveName "kagemusha.jar"
+}

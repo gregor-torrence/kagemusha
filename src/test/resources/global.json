@@ -1,0 +1,5 @@
+{
+  "title": ["Movie Reviews"],
+  "search": ["<a href='http://www.imdb.com/'>Search IMDb</a>"],
+  "copyright": ["copyright ${ year }"]
+}
