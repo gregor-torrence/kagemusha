@@ -4,6 +4,11 @@ import spock.lang.Specification
 
 class TextTranslatorSpec extends Specification {
 
+    def 'should have correct file extension'() {
+        expect:
+        new TextTranslator().getFileExtension() == 'txt'
+    }
+
     def 'should translate a TXT file'() {
         given:
         File inputFile = new File(getClass().getClassLoader().getResource('hamlet.txt').getFile())

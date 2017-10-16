@@ -4,6 +4,11 @@ import spock.lang.Specification
 
 class JsonTranslatorSpec extends Specification {
 
+    def 'should have correct file extension'() {
+        expect:
+        new JsonTranslator().getFileExtension() == 'json'
+    }
+
     def 'should translate simple json file'() {
         given:
         File inputFile = new File(getClass().getClassLoader().getResource('simple.json').getFile())

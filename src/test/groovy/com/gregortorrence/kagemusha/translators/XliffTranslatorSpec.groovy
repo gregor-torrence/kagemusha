@@ -4,6 +4,11 @@ import spock.lang.Specification
 
 class XliffTranslatorSpec extends Specification {
 
+    def 'should have correct file extension'() {
+        expect:
+        new XliffTranslator().getFileExtension() == 'xlf'
+    }
+
     def 'should translate furniture XLIFF file'() {
         given:
         File inputFile = new File(getClass().getClassLoader().getResource('messages.xlf').getFile())

@@ -6,7 +6,7 @@ import java.security.Permission
 
 class MainSpec extends Specification {
 
-    def 'no meaningful way to test Main'() {
+    def 'no meaningful way to test instantiating the Main class'() {
         when:
         new Main()
 
@@ -14,7 +14,7 @@ class MainSpec extends Specification {
         noExceptionThrown()
     }
 
-    // Overkill to test the exit behavior. Installs a security manager to prevent the System.exit from actually happening.
+    // Slight overkill to test the exit behavior. Installs a security manager to prevent the System.exit from actually happening.
     def 'main should return expected zero or non-zero code'() {
         given:
         def defaultSecurityManager = System.getSecurityManager()

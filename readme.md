@@ -52,6 +52,6 @@ The correct file handling is executed given the extension of the input file's na
 * HTML is parsed with [JSoup](https://jsoup.org/).
 * POJO models are manipulated using [Lombok](https://projectlombok.org/).
 * [Guava](https://github.com/google/guava/wiki) is used because Guava it's just so damned useful.
-* [Spock](http://spockframework.org/) unit tests cover 100% of classes, 100% of methods, and 98% of lines.
+* [Spock](http://spockframework.org/) unit tests cover 100% of classes, 100% of methods, and 99.4% of lines according to Emma.
 * The secret sauce to make the fat jar is in `build.gradle`.
 * If you open this project in [IntelliJ IDEA](https://www.jetbrains.com/idea/), don't forget to enable annotation processing in preferences. That will make it happy with Lombok.

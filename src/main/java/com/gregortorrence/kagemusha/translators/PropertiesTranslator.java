@@ -14,6 +14,11 @@ import java.util.Properties;
 public class PropertiesTranslator implements Translator {
 
     @Override
+    public String getFileExtension() {
+        return "properties";
+    }
+
+    @Override
     public void translate(File inputFile, File outputFile) throws IOException {
         Properties properties = new Properties();
         properties.load(new InputStreamReader(new FileInputStream(inputFile)));

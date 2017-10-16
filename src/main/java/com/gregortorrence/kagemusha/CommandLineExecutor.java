@@ -1,6 +1,6 @@
 package com.gregortorrence.kagemusha;
 
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.io.Files;
 import com.gregortorrence.kagemusha.translators.JsonTranslator;
 import com.gregortorrence.kagemusha.translators.Translator;
@@ -24,11 +24,11 @@ public class CommandLineExecutor {
     private static final int ERROR_EXCEPTION_DURING_TRANSLATION = -1;
 
     // This defines all supported file types
-    private static Map<String, Translator> translators = ImmutableMap.of(
-            "txt",        new TextTranslator(),
-            "json",       new JsonTranslator(),
-            "xlf",        new XliffTranslator(),
-            "properties", new PropertiesTranslator()
+    private static List<Translator> translators = ImmutableList.of(
+            new TextTranslator(),
+            new JsonTranslator(),
+            new XliffTranslator(),
+            new PropertiesTranslator()
     );
 
     /**
@@ -44,15 +44,20 @@ public class CommandLineExecutor {
             String outputFilename = args.get(1);
 
             String fileExtension = Files.getFileExtension(inputFilename.toLowerCase());
-            Translator translator = translators.get(fileExtension);
+            Translator translator = translators.stream()
+                    .filter(t -> t.getFileExtension().equals(fileExtension))
+                    .findFirst()
+                    .orElse(null);
+
             if (translator == null) {
                 System.err.printf("\"%s\" is not a supported file type. Supported types are: %s\n",
                         fileExtension,
-                        translators.keySet().stream().collect(Collectors.joining(", ")));
+                        translators.stream().map(Translator::getFileExtension).collect(Collectors.joining(", ")));
                 return ERROR_UNSUPPORTED_FILE_TYPE;
             } else {
                 translator.translate(new File(inputFilename), new File(outputFilename));
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             return ERROR_EXCEPTION_DURING_TRANSLATION;

@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public interface Translator {
 
+    String getFileExtension();
     void translate(File inputFile, File outputFile) throws IOException;
 
 }

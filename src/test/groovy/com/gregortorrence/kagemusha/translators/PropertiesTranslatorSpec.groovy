@@ -4,6 +4,11 @@ import spock.lang.Specification
 
 class PropertiesTranslatorSpec extends Specification {
 
+    def 'should have correct file extension'() {
+        expect:
+        new PropertiesTranslator().getFileExtension() == 'properties'
+    }
+
     def 'should translate properties file'() {
         given:
         File inputFile = new File(getClass().getClassLoader().getResource('LocalizedStrings.properties').getFile())

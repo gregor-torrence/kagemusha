@@ -16,6 +16,11 @@ public class JsonTranslator implements Translator {
     private static final TypeReference<LinkedHashMap<String,Object>> mapTypeRef = new TypeReference<LinkedHashMap<String,Object>>() {};
 
     @Override
+    public String getFileExtension() {
+        return "json";
+    }
+
+    @Override
     public void translate(File inputFile, File outputFile) throws IOException {
         Map<String,Object> map = objectMapper.readValue(inputFile, mapTypeRef);
         translate(map);

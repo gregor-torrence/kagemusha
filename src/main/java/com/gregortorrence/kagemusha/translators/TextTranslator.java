@@ -13,6 +13,11 @@ import java.io.PrintWriter;
 public class TextTranslator implements Translator {
 
     @Override
+    public String getFileExtension() {
+        return "txt";
+    }
+
+    @Override
     public void translate(File inputFile, File outputFile) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile)));
                 PrintWriter writer = new PrintWriter(outputFile))

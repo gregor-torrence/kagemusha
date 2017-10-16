@@ -14,6 +14,11 @@ import java.io.IOException;
 public class XliffTranslator implements Translator {
 
     @Override
+    public String getFileExtension() {
+        return "xlf";
+    }
+
+    @Override
     public void translate(File inputFile, File outputFile) throws IOException {
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);

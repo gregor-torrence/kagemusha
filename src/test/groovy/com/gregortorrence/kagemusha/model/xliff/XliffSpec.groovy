@@ -15,7 +15,7 @@ class XliffSpec extends Specification {
         then:
         xliff != null
         xliff.getVersion() == '1.0'
-        xliff.getFile().getHeader() == null
+        xliff.getFile().getHeader().getNote() == 'note'
         xliff.getFile().getSourceLanguage() == 'en'
         xliff.getFile().getTargetLanguage() == 'de'
         xliff.getFile().getDataType() == 'plaintext'
