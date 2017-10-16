@@ -43,7 +43,7 @@ Non-zero indicates a failure. Error messages are written to stderr. Nothing is w
 
 The correct file handling is executed given the extension of the input file's name.
 
-*The full [XLIFF](https://wiki.oasis-open.org/xliff/) is not yet supported. Only the elements seen in the model package.*
+*TODO: The full [XLIFF](https://wiki.oasis-open.org/xliff/) is not yet supported. The model package and its tests need to be completed to support all possible elements.*
 
 
 ### Developer notes ###

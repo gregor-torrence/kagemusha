@@ -99,7 +99,7 @@ class KagemushaSpec extends Specification {
         Kagemusha.containsFormatArguments(string) == isFormat
         Kagemusha.containsSubstitutions(string) == isSub
 
-        // Five obvious cases, and Five unrealistic ones
+        // Five obvious cases, and five unrealistic ones
         where:
         isUrl | isHtml | isFormat | isSub    | string
 
