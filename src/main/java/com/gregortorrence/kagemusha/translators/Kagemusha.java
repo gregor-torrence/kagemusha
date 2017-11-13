@@ -4,6 +4,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 
+import java.text.Normalizer;
+import java.util.regex.Pattern;
+
 /**
  * Class for translating ASCII into Unicode 0xFFnn characters. The only public method is
  *      public static String translate(String source)
@@ -18,6 +21,8 @@ public class Kagemusha {
 
     private static final String halfWidth = "\r\n\t 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"'’#$%&()*+,-./:;<=>?@[\\]^_`{|}~";
     private static final String fullWidth = "\r\n\t　０１２３４５６７８９ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ！゛＇＇＃＄％＆（）＊＋、ー。／：；〈＝〉？＠［\\］＾＿‘｛｜｝～";
+
+    private static final Pattern diacriticsPattern = Pattern.compile("[\\p{InCombiningDiacriticalMarks}\\p{IsLm}\\p{IsSk}]+");
 
     /**
      * Makes a rudimentary guess about the format of the supplied string: URL, HTML, Java Format, or plain text,
@@ -41,6 +46,7 @@ public class Kagemusha {
      * Plain text translation.
      */
     private static String translateText(String source) {
+        source = stripDiacritics(source);
         StringBuilder builder = new StringBuilder(source.length());
         for (char ch: source.toCharArray()) {
             int index = halfWidth.indexOf(ch);
@@ -51,6 +57,12 @@ public class Kagemusha {
             }
         }
         return builder.toString();
+    }
+
+    private static String stripDiacritics(String str) {
+        str = Normalizer.normalize(str, Normalizer.Form.NFD);
+        str = diacriticsPattern.matcher(str).replaceAll("");
+        return str;
     }
 
     /**
