@@ -15,6 +15,8 @@ they are displayed, you will simplify verifying your application's localization 
   * You will verify your layout can handle variation in rendered String width, because the translated Strings are wider.
   * You will not need to learn another language, since the text still reads as English.
   
+Input strings from most European languages and Vietnamese are supported by stripping off the diacritical marks before translation.
+  
 The name is taken from the [1980 Kurosawa film](http://www.imdb.com/title/tt0080979/) in which a feudal Japanese lord is replaced with an impostor.
   
 ### Building the Executable ###

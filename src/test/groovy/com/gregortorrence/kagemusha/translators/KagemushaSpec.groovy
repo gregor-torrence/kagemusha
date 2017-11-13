@@ -25,9 +25,31 @@ class KagemushaSpec extends Specification {
 
         Kagemusha.translateText('The\nQuick\rBrown\tFox') == 'Ｔｈｅ\nＱｕｉｃｋ\rＢｒｏｗｎ\tＦｏｘ'
 
-        Kagemusha.translateText('!@#$%^&*()_+-={}[]:";\'<>?/.,') == '！＠＃＄％＾＆＊（）＿＋ー＝｛｝［］：゛；＇〈〉？／。、'
+        Kagemusha.translateText('!@#$%&*()_+-={}[]:";\'<>?/.,') == '！＠＃＄％＆＊（）＿＋ー＝｛｝［］：゛；＇〈〉？／。、'
 
-        Kagemusha.translateText('\u00ee\u0eee\ueeee') == '？？？'
+        Kagemusha.translateText('\ufefe\uefef\u0eee\ueeee') == '？？？？'
+    }
+
+    def 'should strip diacritics'() {
+        expect:
+        // European diacritical characters:
+        Kagemusha.stripDiacritics('àáäãåāçćčèéêëēėęîïíīįìñńôöòóōõśšûüùúūÿžźż') == 'aaaaaaccceeeeeeeiiiiiinnoooooossuuuuuyzzz'
+        Kagemusha.stripDiacritics('ÀÁÄÃÅĀÇĆČÈÉÊËĒĖĘÎÏÍĪĮÌÑŃÔÖÒÓŌÕŚŠÛÜÙÚŪŸŽŹŻ') == 'AAAAAACCCEEEEEEEIIIIIINNOOOOOOSSUUUUUYZZZ'
+
+        // Unchanged European non-diacritical, non-ascii characters:
+        Kagemusha.stripDiacritics('øœœßł') == 'øœœßł'
+        Kagemusha.stripDiacritics('ØŒŒßŁ') == 'ØŒŒßŁ'
+
+        // Vietnamese diacritical characters:
+        Kagemusha.stripDiacritics('aAăĂâÂeEêÊiIoOôÔơƠuUưƯyY') == 'aAaAaAeEeEiIoOoOoOuUuUyY'
+        Kagemusha.stripDiacritics('áÁắẮấẤéÉếẾíÍóÓốỐớỚúÚứỨýÝ') == 'aAaAaAeEeEiIoOoOoOuUuUyY'
+        Kagemusha.stripDiacritics('àÀằẰầẦèÈềỀìÌòÒồỒờỜùÙừỪỳỲ') == 'aAaAaAeEeEiIoOoOoOuUuUyY'
+        Kagemusha.stripDiacritics('ảẢẳẲẩẨẻẺểỂỉỈỏỎổỔởỞủỦửỬỷỶ') == 'aAaAaAeEeEiIoOoOoOuUuUyY'
+        Kagemusha.stripDiacritics('ãÃẵẴẫẪẽẼễỄĩĨõÕỗỖỡỠũŨữỮỹỸ') == 'aAaAaAeEeEiIoOoOoOuUuUyY'
+        Kagemusha.stripDiacritics('ạẠặẶậẬẹẸệỆịỊọỌộỘợỢụỤựỰỵỴ') == 'aAaAaAeEeEiIoOoOoOuUuUyY'
+
+        // Reg-ex side effect unfortunately strips carets:
+        Kagemusha.stripDiacritics('A^B^C^1^2^3') == 'ABC123'
     }
 
     def 'translateFormat should preserve format arguments'() {
