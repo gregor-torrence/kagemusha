@@ -12,17 +12,20 @@ they are displayed, you will simplify verifying your application's localization 
    
   * You will verify that unicode Strings are correctly handled.
   * You will verify that your font rendering can handle unicode.
-  * You will verify your layout can handle variation in rendered String width, because the translated Strings are wider.
-  * You will not need to learn another language, since the text still reads as English.
-  
-Input strings from most European languages and Vietnamese are supported by stripping off the diacritical marks before translation.
+  * You will verify your layout can handle a wider variation of rendered String width.
+  * You will not need to learn another language, since the text still reads as the same. 
+    
+Unicode only supports wide character variants of plain ASCII characters. Despite that, the input strings can be from any 
+language that uses mostly Roman letters. This includes nearly every European language as well as Vietnamese. These are 
+supported by stripping off the diacritical marks before translation. The results can be described as serviceable, but 
+certainly not lossless. 
   
 The name is taken from the [1980 Kurosawa film](http://www.imdb.com/title/tt0080979/) in which a feudal Japanese lord is replaced with an impostor.
   
 ### Building the Executable ###
   
 1. Be certain you have git and a JDK 8 or later available on the command line.
-1. Clone out this repository and `cd` to the root of the checkout
+1. Clone this repository and `cd` to the root of the checkout
 1. Run `./gradlew clean test jar`. This will create the executable `build/lib/kagemusha.jar`.
 1. Copy the jar to where you would like to use it, or simply reference its full path when invoking java. 
 Note that this is a "fat jar" that contains both the application and its dependencies.
