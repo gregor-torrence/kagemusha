@@ -28,7 +28,7 @@ The name is taken from the [1980 Kurosawa film](http://www.imdb.com/title/tt0080
 1. Clone this repository and `cd` to the root of the checkout
 1. Run `./gradlew clean test jar`. This will create the executable `build/lib/kagemusha.jar`.
 1. Copy the jar to where you would like to use it, or simply reference its full path when invoking java. 
-Note that this is a "fat jar" that contains both the application and its dependencies.
+Note that this is a "fat jar" that contains the application and all of its dependencies.
   
 ### Usage ###
 
@@ -43,7 +43,7 @@ Non-zero indicates a failure. Error messages are written to stderr. Nothing is w
 .txt         Entire file is translated.
 .properties  Property values are translated, keys are unchanged. Format arguments are preserved.
 .json        Fields with a String value are translated. Suitable for translating React localization files.
-.xlf         Display strings value are translated. Used for translating Angular 2+ localization files.
+.xlf         Display string values are translated. Used for translating Angular 2+ localization files.
 ```
 
 The correct file handling is executed given the extension of the input file's name.
@@ -56,7 +56,7 @@ The correct file handling is executed given the extension of the input file's na
 * XML and JSON are parsed with [Jackson](https://github.com/FasterXML).
 * HTML is parsed with [JSoup](https://jsoup.org/).
 * POJO models are manipulated using [Lombok](https://projectlombok.org/).
-* [Guava](https://github.com/google/guava/wiki) is used because Guava it's just so damned useful.
+* [Guava](https://github.com/google/guava/wiki) is used because it's just so damned useful.
 * [Spock](http://spockframework.org/) unit tests cover 100% of classes, 100% of methods, and 99.4% of lines according to Emma.
 * The secret sauce to make the fat jar is in `build.gradle`.
 * If you open this project in [IntelliJ IDEA](https://www.jetbrains.com/idea/), don't forget to enable annotation processing in preferences. That will make it happy with Lombok.
