@@ -9,7 +9,7 @@ class XliffTranslatorSpec extends Specification {
         new XliffTranslator().getFileExtension() == 'xlf'
     }
 
-    def 'should translate furniture XLIFF file'() {
+    def 'should translate XLIFF file'() {
         given:
         File inputFile = new File(getClass().getClassLoader().getResource('messages.xlf').getFile())
         File outputFile = File.createTempFile('unitTest', '.xlf')
